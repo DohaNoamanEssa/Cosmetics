@@ -25,13 +25,13 @@ This app provides a smooth browsing experience for users to explore beauty produ
 - **DevTools:** 2.48.0  
 - **Channel:** stable
 
-
 ## 🎥 Demo Video
-[![Watch the video](https://youtube.com/shorts/yFoZbpfGlDc?si=Z4JvPMUF9KeruWeR)  
+[![Watch the video](https://img.youtube.com/vi/yFoZbpfGlDc/maxresdefault.jpg)](https://www.youtube.com/watch?v=yFoZbpfGlDc)
 
 
 ## 📦 Download APK  
-👉 [**Download the APK https://drive.google.com/file/d/1bOu4luHcSnOQ6u_dbcCAcGVToMOVZKyR/view?usp=drive_link**]([cosmetics-v1.0.0.apk])  
+👉 [**Download the APK**](https://drive.google.com/file/d/1bOu4luHcSnOQ6u_dbcCAcGVToMOVZKyR/view?usp=drive_link)
+
 
 # 💄 Cosmetics App
 **Version:** 1.0.0+1
@@ -40,6 +40,7 @@ This app provides a smooth browsing experience for users to explore beauty produ
 **Doha Noaman Essa**  
 📧 [Doha Noaman](mailto:doha.noaman.essa@gmail.com)  
 💬 [GitHub](https://github.com/DohaNoamanEssa)
+
 
 
 
