@@ -19,6 +19,12 @@ This app provides a smooth browsing experience for users to explore beauty produ
 - **__** for state management  
 - **Android Studio**
 
+  ## 🧩 Environment
+- **Flutter Version:** 3.35.6  
+- **Dart Version:** 3.9.2  
+- **DevTools:** 2.48.0  
+- **Channel:** stable
+
 
 ## 🎥 Demo Video
 [![Watch the video](https://youtube.com/shorts/yFoZbpfGlDc?si=Z4JvPMUF9KeruWeR)  
@@ -34,6 +40,7 @@ This app provides a smooth browsing experience for users to explore beauty produ
 **Doha Noaman Essa**  
 📧 [Doha Noaman](mailto:doha.noaman.essa@gmail.com)  
 💬 [GitHub](https://github.com/DohaNoamanEssa)
+
 
 
 
