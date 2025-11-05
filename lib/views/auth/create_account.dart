@@ -8,7 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreateAccountView extends StatelessWidget {
-  const CreateAccountView({super.key});
+   CreateAccountView({super.key});
+
+  final TextEditingController nameController = TextEditingController();
+    final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+   final TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +44,7 @@ class CreateAccountView extends StatelessWidget {
                 AppInput(
                   hintText:"Sara Samer" ,
                   labelText: "Your Name",
+                  controller: nameController,
                 ),
                 AppInput(
                   keyboardType: TextInputType.phone,
@@ -46,15 +52,18 @@ class CreateAccountView extends StatelessWidget {
                   hintText: "1022658997",
                   bottomSpace: 16.h,
                   withCountryCode: true,
+                  controller: phoneController,
                 ),
 
                 AppInput(
                   hintText: "Create your password",
                   isPassword: true,
+                  controller: passwordController,
                 ),
                 AppInput(
                   hintText: "Confirm password",
                   isPassword: true,
+                  controller:confirmPasswordController ,
 
 
                 ),

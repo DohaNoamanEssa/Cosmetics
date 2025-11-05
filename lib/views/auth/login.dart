@@ -16,6 +16,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+ final TextEditingController phoneController = TextEditingController();
+ final TextEditingController passwordController = TextEditingController();
 
 
 
@@ -54,6 +56,7 @@ class _LoginViewState extends State<LoginView> {
                 labelText: "Phone Number",
                 withCountryCode: true,
                 bottomSpace: 0,
+                controller: phoneController,
               ),
               SizedBox(height: 8.h),
 
@@ -62,6 +65,7 @@ class _LoginViewState extends State<LoginView> {
                 hintText: "Your Password",
                 isPassword: true,
                bottomSpace: 0,
+                controller: passwordController,
               ),
               Align(
                 alignment: Alignment.topRight,

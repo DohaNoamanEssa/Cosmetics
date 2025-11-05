@@ -7,7 +7,12 @@ import '../../core/ui/app_input.dart';
 
 
 class CreatePasswordView extends StatelessWidget {
-  const CreatePasswordView({super.key});
+
+
+ final TextEditingController passwordController = TextEditingController();
+ final TextEditingController confirmPasswordController = TextEditingController();
+
+   CreatePasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +53,15 @@ class CreatePasswordView extends StatelessWidget {
                 AppInput(
                   labelText: "New password",
                   isPassword: true,
+                  controller: passwordController,
 
                 ),
                 AppInput(
                   labelText:"Confirm password" ,
                   bottomSpace: 71.h,
-                  isPassword: true
-                  ,
+                  isPassword: true,
+                  controller: confirmPasswordController,
+
                 ),
 
                 AppButton(buttonTitle: "Confirm",onPressed: (){

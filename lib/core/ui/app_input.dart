@@ -11,6 +11,7 @@ class AppInput extends StatefulWidget {
   final String? suffixIcon;
   final String? hintText, labelText;
   final double? bottomSpace;
+  final TextEditingController controller;
 
   const AppInput({
     super.key,
@@ -22,6 +23,7 @@ class AppInput extends StatefulWidget {
     this.isPassword = false,
     this.bottomSpace = 16,
     this.withCountryCode = false,
+    required this.controller,
   });
 
   @override
@@ -30,7 +32,7 @@ class AppInput extends StatefulWidget {
 
 class _AppInputState extends State<AppInput> {
    bool isHidden=true;
-   TextEditingController phoneController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +44,19 @@ class _AppInputState extends State<AppInput> {
 
           Expanded(
             child: TextFormField(
-              controller: phoneController,
+              controller:widget.controller,
               maxLength: 10,
               inputFormatters: [
-                if (widget.withCountryCode == true) ...[
+
+                if (widget.withCountryCode == true ) ...[
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(10),
-
                   FilteringTextInputFormatter.allow(RegExp(r'^1\d{0,9}$')),
                 ],
+
+                if(widget.withCountryCode==false)...[
+
+                ]
 
 
               ],

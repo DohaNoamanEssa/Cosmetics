@@ -1,18 +1,46 @@
-# cosmetics
+# 💄 Cosmetics App  
+**Cosmetics** is a Flutter-based mobile application designed to showcase beauty and skincare products with a modern, elegant, and user-friendly interface 🌸  
 
-A new Flutter project.
 
-## Getting Started
+## 📱 Overview
+This app provides a smooth browsing experience for users to explore beauty products, view product details, and manage authentication through login and sign-up pages.
 
-This project is a starting point for a Flutter application.
+## ✨ Features
+- 🌷 Clean and elegant UI  
+- 🔐 Login and Sign-Up pages  
+- 🛍️ Product detail view  
+- 🛒 Simple shopping cart  
+- 🔎 Search functionality
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🧠 Technologies Used
+- **Flutter** 💙  
+- **Dart**  
+- **__** for state management  
+- **Android Studio**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 
-[apk ("link is here")]
+## 🎥 Demo Video
+[![Watch the video](https://youtube.com/shorts/yFoZbpfGlDc?si=Z4JvPMUF9KeruWeR)  
+
+
+## 📦 Download APK  
+👉 [**Download the APK https://drive.google.com/file/d/1bOu4luHcSnOQ6u_dbcCAcGVToMOVZKyR/view?usp=drive_link**]([cosmetics-v1.0.0.apk])  
+
+# 💄 Cosmetics App
+**Version:** 1.0.0+1
+
+## 👩🏻‍💻 Developed by  
+**Doha Noaman Essa**  
+📧 [Doha Noaman](mailto:doha.noaman.essa@gmail.com)  
+💬 [GitHub](https://github.com/DohaNoamanEssa)
+
+
+
+
+
+
+
+
+
+

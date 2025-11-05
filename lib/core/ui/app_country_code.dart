@@ -33,6 +33,7 @@ class _AppCountryCodeState extends State<AppCountryCode> {
           child: Center(
             child: DropdownButtonHideUnderline(
               child: DropdownButton<int>(
+
                 padding: EdgeInsets.symmetric(horizontal: 16,vertical: 3),
                 value: myValue,
                 items: list

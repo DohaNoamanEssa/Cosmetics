@@ -14,6 +14,8 @@ class ForgetPasswordView extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPasswordView> {
+  final TextEditingController phoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +61,8 @@ class _ForgetPasswordState extends State<ForgetPasswordView> {
                   labelText: "Phone Number",
                   withCountryCode: true,
                   keyboardType: TextInputType.phone,
+                  controller: phoneController,
+
                 ),
 
                 SizedBox(height: 56.h),
