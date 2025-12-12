@@ -48,15 +48,11 @@ class _AppLoginOrRegisterState extends State<AppLoginOrRegister> {
                 onPressed: () {
                   if (widget.isLogin) {
                     goTo(CreateAccountView());
-                    setState(() {
 
-                    });
 
                   } else {
                     goTo(LoginView());
-                    setState(() {
 
-                    });
                   }
                 },
               ),

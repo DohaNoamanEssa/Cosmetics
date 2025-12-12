@@ -8,28 +8,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreateAccountView extends StatelessWidget {
-   CreateAccountView({super.key});
-
-  final TextEditingController nameController = TextEditingController();
-    final TextEditingController phoneController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-   final TextEditingController confirmPasswordController = TextEditingController();
+   const CreateAccountView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding:  EdgeInsets.all(13.0.r),
-        child: SafeArea(
-          child: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding:  EdgeInsets.all(13.0.r),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(height: 40.h,),
                 AppImage(imageURL:
                   "logo.png",
                   height: 67.h,
                   width: 62.w,
-                  topSpace: 40.h,
                   bottomSpace: 40.h,
                 ),
                 Text(
@@ -44,7 +39,6 @@ class CreateAccountView extends StatelessWidget {
                 AppInput(
                   hintText:"Sara Samer" ,
                   labelText: "Your Name",
-                  controller: nameController,
                 ),
                 AppInput(
                   keyboardType: TextInputType.phone,
@@ -52,18 +46,15 @@ class CreateAccountView extends StatelessWidget {
                   hintText: "1022658997",
                   bottomSpace: 16.h,
                   withCountryCode: true,
-                  controller: phoneController,
                 ),
 
                 AppInput(
                   hintText: "Create your password",
                   isPassword: true,
-                  controller: passwordController,
                 ),
                 AppInput(
                   hintText: "Confirm password",
                   isPassword: true,
-                  controller:confirmPasswordController ,
 
 
                 ),
@@ -71,7 +62,7 @@ class CreateAccountView extends StatelessWidget {
                 AppButton(buttonTitle: "Next",onPressed: (){
                   goTo(VerifyCodePage(
                     isForgetPassword: false,
-                  ));
+                  ),canPop: true);
                 },),
                 SizedBox(height: 20.h),
                 AppLoginOrRegister(isLogin: false,),

@@ -190,7 +190,7 @@ class _Item extends StatelessWidget {
           padding:  EdgeInsets.all(12.0.r),
           child: Align(
             alignment: AlignmentDirectional.topEnd,
-            child: AppImage(imageURL: "cart_on_category.svg"),
+            child: AppImage(imageURL: "check_out.svg"),
           ),
         ),
       ],

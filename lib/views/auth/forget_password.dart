@@ -1,4 +1,5 @@
 import 'package:cosmetics/core/logic/helper_methods.dart';
+import 'package:cosmetics/core/ui/app_back.dart';
 import 'package:cosmetics/core/ui/app_button.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
 import 'package:cosmetics/core/ui/app_input.dart';
@@ -14,7 +15,6 @@ class ForgetPasswordView extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPasswordView> {
-  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,7 @@ class _ForgetPasswordState extends State<ForgetPasswordView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                AppBack(),
                 Padding(
                   padding: EdgeInsets.only(top: 40.0.h),
                   child: AppImage(
@@ -61,7 +62,6 @@ class _ForgetPasswordState extends State<ForgetPasswordView> {
                   labelText: "Phone Number",
                   withCountryCode: true,
                   keyboardType: TextInputType.phone,
-                  controller: phoneController,
 
                 ),
 
@@ -70,8 +70,7 @@ class _ForgetPasswordState extends State<ForgetPasswordView> {
                 AppButton(
                   buttonTitle: "Next",
                   onPressed: () {
-                    goTo(VerifyCodePage(isForgetPassword: true,));
-                    setState(() {});
+                    goTo(VerifyCodePage(isForgetPassword: true,),canPop: true);
                   },
                 ),
               ],

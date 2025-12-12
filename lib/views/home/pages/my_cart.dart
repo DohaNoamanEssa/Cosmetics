@@ -50,7 +50,7 @@ class MyCartPage extends StatelessWidget {
             padding: EdgeInsets.all(12.r),
             child: IconButton(
                 onPressed: (){
-                  goTo(CheckOutView());
+                  goTo(CheckOutView(),canPop: true);
                 },
                 icon:AppImage(imageURL: "my_cart_final.svg",)),
 

@@ -1,6 +1,5 @@
 import 'package:cosmetics/core/ui/app_image.dart';
 import 'package:cosmetics/core/ui/app_search.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,17 +37,11 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Column(
-        children: [
-          SizedBox(height: 24,),
-          Text("Categories"),
-        ],
-      ),)),
+      appBar: AppBar(title: Text("Categories"),centerTitle: true,),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(13.r),
+        padding: EdgeInsets.all(13.r).copyWith(top: 24.h),
         child: Column(
           children: [
-            SizedBox(height: 24.h,),
             AppSearch(),
             ListView.separated(
               padding: EdgeInsets.symmetric(
@@ -100,7 +93,7 @@ class _Item extends StatelessWidget {
           ),
         ),
         Spacer(),
-        AppImage(imageURL: "arrow-right.svg"),
+        AppImage(imageURL: "arrow_right.svg"),
       ],
     );
   }

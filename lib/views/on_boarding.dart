@@ -1,7 +1,6 @@
 import 'package:cosmetics/core/logic/helper_methods.dart';
 import 'package:cosmetics/core/ui/app_button.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
-import 'package:cosmetics/views/auth/create_account.dart';
 import 'package:cosmetics/views/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,35 +14,38 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardindViewState extends State<OnBoardingView> {
   final list = [
-    OnBoardingList(
+    _Model(
       imgURL: "on_boarding1.png",
       title: "WELCOME!",
       subTitle:
           "Makeup has the power to transform your\n mood and empowers you to be a more\n confident person.",
     ),
 
-    OnBoardingList(
+    _Model(
       imgURL: "on_boarding2.png",
       title: "SEARCH & PICK",
       subTitle:
           "We have dedicated set of products and\n routines hand picked for every skin type.\n",
     ),
-    OnBoardingList(
+    _Model(
       imgURL: "on_boarding3.png",
       title: "PUCH NOTIFICATIONS ",
       subTitle: "Allow notifications for new makeup &\n cosmetics offers.\n",
     ),
   ];
   int currentIndex = 0;
+  int lastIndex=2;
 
   @override
   Widget build(BuildContext context) {
+    bool isLast =currentIndex == list.length-1;
+    final currentItem=list[currentIndex];
     return Scaffold(
       appBar: AppBar(
         actions: [
           Padding(
             padding: EdgeInsets.all(20.0.r),
-            child: (currentIndex == 0 || currentIndex == 1)
+            child: (!isLast)
                 ? InkWell(
                     onTap: () => goTo(LoginView()),
                     child: Text(
@@ -61,17 +63,14 @@ class _OnBoardindViewState extends State<OnBoardingView> {
       ),
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 78.h),
             AppImage(
-              imageURL: list[currentIndex].imgURL,
-              width: 283.w,
-              height: 259.h,
+              imageURL: currentItem.imgURL,
               bottomSpace: 28.h,
             ),
             Text(
-              list[currentIndex].title,
+              currentItem.title,
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 16.sp,
@@ -81,7 +80,7 @@ class _OnBoardindViewState extends State<OnBoardingView> {
             SizedBox(height: 10.h),
             Text(
               textAlign: TextAlign.center,
-              list[currentIndex].subTitle,
+              currentItem.subTitle,
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 16.sp,
@@ -90,27 +89,28 @@ class _OnBoardindViewState extends State<OnBoardingView> {
             ),
 
             SizedBox(height: 30.h),
-            (currentIndex == 0 || currentIndex == 1)
-                ? FloatingActionButton(
-                    onPressed: () {
-                      if (currentIndex < list.length) {
-                        currentIndex++;
-                      }
-                      setState(() {});
-                    },
-                    backgroundColor: Color(0xff434C6D),
-                    child: AppImage(
-                      imageURL: "arrow_right_splash.svg",
-                      width: 8.w,
-                      height: 18.h,
-                      color: Color(0xffD9D9D9),
-                    ),
-                  )
-                : AppButton(
-                  buttonTitle: "let’s start!",
-                  buttonColor: Color(0xff434C6D),
-                              onPressed: ()=>goTo(LoginView()),
-                ),
+            (isLast)
+                ? AppButton(
+              buttonTitle: "let’s start!",
+              buttonColor: Color(0xff434C6D),
+              onPressed: ()=>goTo(LoginView()),
+            )
+
+                :   FloatingActionButton(
+          onPressed: () {
+            if (currentIndex < list.length) {
+            currentIndex++;
+            }
+            setState(() {});
+            },
+              backgroundColor: Color(0xff434C6D),
+              child: AppImage(
+        imageURL: "arrow_right_splash.svg",
+        width: 8.w,
+        height: 18.h,
+        color: Color(0xffD9D9D9),
+              ),
+            ),
 
           ],
         ),
@@ -119,12 +119,12 @@ class _OnBoardindViewState extends State<OnBoardingView> {
   }
 }
 
-class OnBoardingList {
+class _Model {
   final String imgURL;
   final String title;
   final String subTitle;
 
-  OnBoardingList({
+  _Model({
     required this.imgURL,
     required this.title,
     required this.subTitle,

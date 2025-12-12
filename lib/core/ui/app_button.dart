@@ -7,7 +7,7 @@ final    Color? buttonColor;
 final VoidCallback? onPressed;
 final  String prefixIcon;
 final bool isIcon;
-   const AppButton( {super.key, required this.buttonTitle, this.buttonColor, this.onPressed,   this.prefixIcon="",  this.isIcon=false}) ;
+   const AppButton( {super.key, required this.buttonTitle, this.buttonColor, this.onPressed ,   this.prefixIcon="",  this.isIcon=false}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ final bool isIcon;
           minimumSize: Size(268, 65),
 
         ),
-        onPressed:onPressed,
+        onPressed:onPressed ?? (){},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

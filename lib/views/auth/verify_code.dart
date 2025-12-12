@@ -1,40 +1,42 @@
 import 'package:cosmetics/core/logic/helper_methods.dart';
 import 'package:cosmetics/core/ui/app_button.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
+import 'package:cosmetics/core/ui/app_otp.dart';
+import 'package:cosmetics/core/ui/app_resend_otp.dart';
 import 'package:cosmetics/views/auth/create_password.dart';
 import 'package:cosmetics/views/auth/success_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/ui/app_back.dart';
 
 class VerifyCodePage extends StatefulWidget {
   final bool isForgetPassword;
-  const VerifyCodePage({super.key, required this.isForgetPassword});
+
+  const VerifyCodePage({super.key, this.isForgetPassword = false});
 
   @override
-  State<VerifyCodePage> createState() => _VerifyCodePageState(forgetPassword:isForgetPassword);
+  State<VerifyCodePage> createState() => _VerifyCodePageState();
 }
 
 class _VerifyCodePageState extends State<VerifyCodePage> {
-  final bool forgetPassword;
-
-  _VerifyCodePageState({ required this.forgetPassword});
+  _VerifyCodePageState();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.all(13.0.r),
-        child: SafeArea(
-          child: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(13.0.r),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                AppBack(),
+                SizedBox(height: 40.h,),
                 AppImage(
                   imageURL: "logo.png",
                   height: 62.h,
                   width: 67.w,
-                  topSpace: 40.h,
                   bottomSpace: 40.h,
                 ),
                 Text(
@@ -63,12 +65,17 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      TextSpan(
-                        text: '+20 1022658997',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
-                          color: Color(0xff434C6D),
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: Text(
+                          '+20 1022658997',
+                          textDirection: TextDirection.ltr,
+                          style: TextStyle(
+                            height: 2.4.h,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.sp,
+                            color: Color(0xff434C6D),
+                          ),
                         ),
                       ),
                       TextSpan(
@@ -86,105 +93,33 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                 SizedBox(height: 40.h),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(
-                    "Edit the number",
-                    style: TextStyle(
-                      color: Color(0xffD75D72),
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w600,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Edit the number",
+                      style: TextStyle(
+                        color: Color(0xffD75D72),
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(height: 35.h),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: List.generate(4, (index) {
-                    return SizedBox(
-                      height: 60.h,
-                      width: 60.w,
-                      child: TextField(
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.number,
-                        maxLength: 1,
-                        decoration: InputDecoration(
-                          counterText: "",
-                          hintText: "-",
-                          hintStyle: TextStyle(
-                            color: Color(0xff8E8EA9),
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffD75D72)),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xff898992).withValues(alpha: .36),
-                              width: 1.w,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff434C6D),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-
+                AppVerifyCode(),
                 SizedBox(height: 58.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Didn’t receive a code?",
-                      style: TextStyle(
-                        color: Color(0xff434C6D),
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(width: 2.w),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Resend",
-                        style: TextStyle(
-                          color: Color(0xffD75D72).withValues(alpha: .54),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Spacer(),
-                    Text(
-                      "0:36",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xff8E8EA9),
-                        fontSize: 12.sp,
-                      ),
-                    ),
-                  ],
-                ),
+               AppResendOTP(),
 
                 SizedBox(height: 113.h),
                 AppButton(
                   buttonTitle: "Done",
                   onPressed: () {
-
-
                     setState(() {
-
-                      if (forgetPassword==true) {
+                      if (widget.isForgetPassword == true) {
                         goTo(CreatePasswordView());
-
-
                       } else {
                         showDialog(
                           context: context,

@@ -116,7 +116,7 @@ class ProfileDetails extends StatelessWidget {
 
             Spacer(),
             withSuffixIcon?
-            AppImage(imageURL: "arrow-right.svg",color: Color(0xff434C6D),):Text(""),
+            AppImage(imageURL: "arrow_right.svg",color: Color(0xff434C6D),):Text(""),
 
 
           ],

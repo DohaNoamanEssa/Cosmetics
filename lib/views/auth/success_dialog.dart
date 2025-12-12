@@ -23,10 +23,11 @@ class _DialogePageState extends State<DialogePage> {
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.r)),
         padding: EdgeInsets.all(8.0.r),
-        width: 360.w,
-        height: 343.h,
+
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             AppImage(
               imageURL: "checked_dialog.json",
@@ -60,14 +61,11 @@ class _DialogePageState extends State<DialogePage> {
               buttonTitle: widget.isCreatePassword ? "Return to login" : "Go to home",
               onPressed: () {
                 if(widget.isCreatePassword){
-                  goTo(LoginView());
+                  goTo(LoginView(),canPop: false);
                 }
                 else{
                   goTo(HomeView());
                 }
-                setState(() {
-
-                });
 
               },
 

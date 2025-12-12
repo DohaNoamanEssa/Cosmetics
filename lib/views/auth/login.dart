@@ -16,8 +16,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
- final TextEditingController phoneController = TextEditingController();
- final TextEditingController passwordController = TextEditingController();
+
 
 
 
@@ -26,13 +25,11 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(13.0.r).copyWith(top: 49.h),
+          padding: EdgeInsets.all(13.0.r).copyWith(top: 103.h),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 103.h),
               AppImage(imageURL: "login.png",
-                  width: 284.w, height: 227.h,bottomSpace: 24.h,),
+                bottomSpace: 24.h,),
               Text(
                 "Login Now",
                 style: TextStyle(
@@ -56,7 +53,6 @@ class _LoginViewState extends State<LoginView> {
                 labelText: "Phone Number",
                 withCountryCode: true,
                 bottomSpace: 0,
-                controller: phoneController,
               ),
               SizedBox(height: 8.h),
 
@@ -65,7 +61,6 @@ class _LoginViewState extends State<LoginView> {
                 hintText: "Your Password",
                 isPassword: true,
                bottomSpace: 0,
-                controller: passwordController,
               ),
               Align(
                 alignment: Alignment.topRight,
@@ -78,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
                       style: TextStyle(color: Color(0xffD75D72)),
                     ),
                     onPressed: () {
-                      goTo(ForgetPasswordView());
+                      goTo(ForgetPasswordView(),canPop: true);
                     },
                   ),
                 ),

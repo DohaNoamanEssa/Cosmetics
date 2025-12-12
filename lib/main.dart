@@ -1,11 +1,9 @@
 import 'package:cosmetics/core/logic/helper_methods.dart';
-
 import 'package:cosmetics/views/splash.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() async {
+void main()  {
   runApp(CosmaticsApp());
 }
 
@@ -25,7 +23,7 @@ class CosmaticsApp extends StatelessWidget {
           theme: ThemeData(
             filledButtonTheme: FilledButtonThemeData(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(const Color(0xffD75D72)),
+                backgroundColor: WidgetStateProperty.all(const Color(0xffD75D72)),
               )
             ),
             textTheme: TextTheme(

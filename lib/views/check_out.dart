@@ -1,7 +1,6 @@
-import 'package:cosmetics/core/logic/helper_methods.dart';
+import 'package:cosmetics/core/ui/app_back.dart';
 import 'package:cosmetics/core/ui/app_button.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
-import 'package:cosmetics/views/home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -37,34 +36,21 @@ class _CheckOutViewState extends State<CheckOutView> {
       appBar: AppBar(
         leading: Padding(
           padding: EdgeInsets.all(13.0.r),
-          child: InkWell(
-            onTap: () {
-              goTo(HomeView());
-            },
-            child: CircleAvatar(
-              backgroundColor: Color(0xff101010).withValues(alpha: .05),
-              child: AppImage(
-                imageURL: "arrow_left.svg",
-                width: 6.w,
-                height: 14.h,
-                color: Color(0xff101010),
-              ),
-            ),
-          ),
+          child:
+        AppBack(),
         ),
-        title: Center(
-          child: Text(
-            "Checkout",
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 24.sp,
-              color: Color(0xff434C6D),
-            ),
+        centerTitle: true,
+        title: Text(
+          "Checkout",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 24.sp,
+            color: Color(0xff434C6D),
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(top: 18.h),
             child: Column(
@@ -254,7 +240,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                         //################################################################################
                         // DashedLine(),
                         Text(
-                          "--------------------------------------------------------------------------------------------------------------",
+                          "-"*1000,
                           maxLines: 1,
                         ),
 

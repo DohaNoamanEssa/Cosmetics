@@ -11,7 +11,6 @@ class AppInput extends StatefulWidget {
   final String? suffixIcon;
   final String? hintText, labelText;
   final double? bottomSpace;
-  final TextEditingController controller;
 
   const AppInput({
     super.key,
@@ -23,7 +22,6 @@ class AppInput extends StatefulWidget {
     this.isPassword = false,
     this.bottomSpace = 16,
     this.withCountryCode = false,
-    required this.controller,
   });
 
   @override
@@ -44,7 +42,6 @@ class _AppInputState extends State<AppInput> {
 
           Expanded(
             child: TextFormField(
-              controller:widget.controller,
               maxLength: 10,
               inputFormatters: [
 
