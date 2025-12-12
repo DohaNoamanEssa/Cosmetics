@@ -15,59 +15,58 @@ class CreateAccountView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding:  EdgeInsets.all(13.0.r),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 40.h,),
-                AppImage(imageURL:
-                  "logo.png",
-                  height: 67.h,
-                  width: 62.w,
-                  bottomSpace: 40.h,
-                ),
-                Text(
-                  "Create Account",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24.sp,
-                    color: Color(0xff434C6D),
-                  ),
-                ),
-                SizedBox(height: 50.h),
-                AppInput(
-                  hintText:"Sara Samer" ,
-                  labelText: "Your Name",
-                ),
-                AppInput(
-                  keyboardType: TextInputType.phone,
-                  labelText: "Phone Number",
-                  hintText: "1022658997",
-                  bottomSpace: 16.h,
-                  withCountryCode: true,
-                ),
+          padding:  EdgeInsets.all(13.0.r),
 
-                AppInput(
-                  hintText: "Create your password",
-                  isPassword: true,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: 40.h,),
+              AppImage(imageURL:
+                "logo.png",
+                height: 67.h,
+                width: 62.w,
+                bottomSpace: 40.h,
+              ),
+              Text(
+                "Create Account",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 24.sp,
+                  color: Color(0xff434C6D),
                 ),
-                AppInput(
-                  hintText: "Confirm password",
-                  isPassword: true,
+              ),
+              SizedBox(height: 50.h),
+              AppInput(
+                hintText:"Sara Samer" ,
+                labelText: "Your Name",
+              ),
+              AppInput(
+                keyboardType: TextInputType.phone,
+                labelText: "Phone Number",
+                hintText: "1022658997",
+                bottomSpace: 16.h,
+                withCountryCode: true,
+              ),
+
+              AppInput(
+                hintText: "Create your password",
+                isPassword: true,
+              ),
+              AppInput(
+                hintText: "Confirm password",
+                isPassword: true,
 
 
-                ),
-                SizedBox(height: 90.h),
-                AppButton(buttonTitle: "Next",onPressed: (){
-                  goTo(VerifyCodePage(
-                    isForgetPassword: false,
-                  ),canPop: true);
-                },),
-                SizedBox(height: 20.h),
-                AppLoginOrRegister(isLogin: false,),
-              ],
-            ),
+              ),
+              SizedBox(height: 90.h),
+              AppButton(buttonTitle: "Next",onPressed: (){
+                goTo(VerifyCodePage(
+                  isForgetPassword: false,
+                ),canPop: true);
+              },),
+              SizedBox(height: 20.h),
+              AppLoginOrRegister(isLogin: false,),
+            ],
           ),
         ),
       ),

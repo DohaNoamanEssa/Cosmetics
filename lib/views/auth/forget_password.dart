@@ -21,60 +21,59 @@ class _ForgetPasswordState extends State<ForgetPasswordView> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(13.0.r).copyWith(top: 40.h),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                AppBack(),
-                Padding(
-                  padding: EdgeInsets.only(top: 40.0.h),
-                  child: AppImage(
-                    imageURL: "logo.png",
-                    height: 80.h,
-                    width: 80.w,
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  "Forget Password",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22.sp,
-                    color: Color(0xFF434c6D),
-                  ),
-                ),
-                SizedBox(height: 40.h),
+          padding: EdgeInsets.all(13.0.r).copyWith(top: 40.h),
 
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: TextStyle(fontSize: 16, color: Color(0xff8E8EA9)),
-                    children: [
-                      TextSpan(text: 'Please enter your phone number below\n'),
-                      TextSpan(text: 'to recovery your password.'),
-                    ],
-                  ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              AppBack(),
+              Padding(
+                padding: EdgeInsets.only(top: 40.0.h),
+                child: AppImage(
+                  imageURL: "logo.png",
+                  height: 80.h,
+                  width: 80.w,
                 ),
-
-                SizedBox(height: 45.h),
-                AppInput(
-                  labelText: "Phone Number",
-                  withCountryCode: true,
-                  keyboardType: TextInputType.phone,
-
+              ),
+              SizedBox(height: 20.h),
+              Text(
+                "Forget Password",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.sp,
+                  color: Color(0xFF434c6D),
                 ),
+              ),
+              SizedBox(height: 40.h),
 
-                SizedBox(height: 56.h),
-
-                AppButton(
-                  buttonTitle: "Next",
-                  onPressed: () {
-                    goTo(VerifyCodePage(isForgetPassword: true,),canPop: true);
-                  },
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: TextStyle(fontSize: 16, color: Color(0xff8E8EA9)),
+                  children: [
+                    TextSpan(text: 'Please enter your phone number below\n'),
+                    TextSpan(text: 'to recovery your password.'),
+                  ],
                 ),
-              ],
-            ),
+              ),
+
+              SizedBox(height: 45.h),
+              AppInput(
+                labelText: "Phone Number",
+                withCountryCode: true,
+                keyboardType: TextInputType.phone,
+
+              ),
+
+              SizedBox(height: 56.h),
+
+              AppButton(
+                buttonTitle: "Next",
+                onPressed: () {
+                  goTo(VerifyCodePage(isForgetPassword: true,),canPop: true);
+                },
+              ),
+            ],
           ),
         ),
       ),

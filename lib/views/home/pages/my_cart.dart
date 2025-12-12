@@ -58,7 +58,7 @@ class MyCartPage extends StatelessWidget {
         ],
 
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.only(left:16.w,right: 16.w,top: 24.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

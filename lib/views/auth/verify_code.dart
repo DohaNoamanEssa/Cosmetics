@@ -26,111 +26,110 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(13.0.r),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                AppBack(),
-                SizedBox(height: 40.h,),
-                AppImage(
-                  imageURL: "logo.png",
-                  height: 62.h,
-                  width: 67.w,
-                  bottomSpace: 40.h,
+          padding: EdgeInsets.all(13.0.r),
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              AppBack(),
+              SizedBox(height: 40.h,),
+              AppImage(
+                imageURL: "logo.png",
+                height: 62.h,
+                width: 67.w,
+                bottomSpace: 40.h,
+              ),
+              Text(
+                "Verify Code",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 24.sp,
+                  color: Color(0xff434C6D),
                 ),
-                Text(
-                  "Verify Code",
+              ),
+              SizedBox(height: 40.h),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
                   style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24.sp,
-                    color: Color(0xff434C6D),
+                    fontSize: 14,
+                    color: Color(0xff8E8EA9),
+                    fontWeight: FontWeight.w400,
                   ),
-                ),
-                SizedBox(height: 40.h),
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xff8E8EA9),
-                      fontWeight: FontWeight.w400,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'We just sent a 4-digit verification code to\n',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Color(0xff8E8EA9),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      WidgetSpan(
-                        alignment: PlaceholderAlignment.middle,
-                        child: Text(
-                          '+20 1022658997',
-                          textDirection: TextDirection.ltr,
-                          style: TextStyle(
-                            height: 2.4.h,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14.sp,
-                            color: Color(0xff434C6D),
-                          ),
-                        ),
-                      ),
-                      TextSpan(
-                        text:
-                            '. Enter the code in the box\n below to continue.',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.sp,
-                          color: Color(0xff8E8EA9),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 40.h),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Edit the number",
+                  children: [
+                    TextSpan(
+                      text: 'We just sent a 4-digit verification code to\n',
                       style: TextStyle(
-                        color: Color(0xffD75D72),
-                        fontSize: 12.sp,
+                        fontSize: 14.sp,
+                        color: Color(0xff8E8EA9),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
+                    WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Text(
+                        '+20 1022658997',
+                        textDirection: TextDirection.ltr,
+                        style: TextStyle(
+                          height: 2.4.h,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
+                          color: Color(0xff434C6D),
+                        ),
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          '. Enter the code in the box\n below to continue.',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.sp,
+                        color: Color(0xff8E8EA9),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 40.h),
+              Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "Edit the number",
+                    style: TextStyle(
+                      color: Color(0xffD75D72),
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-                SizedBox(height: 35.h),
+              ),
+              SizedBox(height: 35.h),
 
-                AppVerifyCode(),
-                SizedBox(height: 58.h),
-               AppResendOTP(),
+              AppVerifyCode(),
+              SizedBox(height: 58.h),
+             AppResendOTP(),
 
-                SizedBox(height: 113.h),
-                AppButton(
-                  buttonTitle: "Done",
-                  onPressed: () {
-                    setState(() {
-                      if (widget.isForgetPassword == true) {
-                        goTo(CreatePasswordView());
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (context) => DialogePage(),
-                        );
-                      }
-                    });
-                  },
-                ),
-              ],
-            ),
+              SizedBox(height: 113.h),
+              AppButton(
+                buttonTitle: "Done",
+                onPressed: () {
+                  setState(() {
+                    if (widget.isForgetPassword == true) {
+                      goTo(CreatePasswordView());
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) => DialogePage(),
+                      );
+                    }
+                  });
+                },
+              ),
+            ],
           ),
         ),
       ),
