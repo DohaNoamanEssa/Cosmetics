@@ -3,36 +3,42 @@ import 'package:cosmetics/core/ui/app_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CategoriesPage extends StatelessWidget {
+class CategoriesPage extends StatefulWidget {
+
+ const CategoriesPage({super.key});
+
+  @override
+  State<CategoriesPage> createState() => _CategoriesPageState();
+}
+
+class _CategoriesPageState extends State<CategoriesPage> {
   final list = [
-    CategoriesTypes(
-      imgURL:
+    _Model (
+      image:
           "https://avatars.mds.yandex.net/i?id=f3d13692d9d016ce970e112c39fdc339a9c0b26deb0995ae-12658945-images-thumbs&n=13",
-      categoryTypeName: 'Bundles',
+      name: 'Bundles',
     ),
 
-    CategoriesTypes(
-      categoryTypeName: "Perfumes",
-      imgURL:
+    _Model (
+      name: "Perfumes",
+      image:
           "https://i.pinimg.com/550x/df/c2/b4/dfc2b4965f7657f2bc9ec74acb11a6c7.jpg",
     ),
-    CategoriesTypes(
-      categoryTypeName: "MakeUp",
-      imgURL: "https://cdn.wconcept.com/products/7202026/08/720202608_1.jpg",
+    _Model (
+      name: "MakeUp",
+      image: "https://cdn.wconcept.com/products/7202026/08/720202608_1.jpg",
     ),
-    CategoriesTypes(
-      categoryTypeName: "SkinCare",
-      imgURL:
+    _Model (
+      name: "SkinCare",
+      image:
           "https://img.joomcdn.net/b6b840444d1855c52c6fb104b4cbb1a6ffab8df7_original.jpeg",
     ),
-    CategoriesTypes(
-      categoryTypeName: "Gifts",
-      imgURL:
+    _Model (
+      name: "Gifts",
+      image:
           "https://i.pinimg.com/736x/5a/2a/51/5a2a518ec2620e980e24a0593b3d6754.jpg",
     ),
   ];
-
-  CategoriesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +56,7 @@ class CategoriesPage extends StatelessWidget {
               ).copyWith(bottom: 50.h),
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemBuilder: (context, index) => _Item(categoryType: list[index]),
+              itemBuilder: (context, index) => _Item(model: list[index]),
               separatorBuilder: (context, index) => Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.h),
                 child: Divider(color: Color(0xffB3B3C1).withValues(alpha: .5),),
@@ -66,9 +72,9 @@ class CategoriesPage extends StatelessWidget {
 }
 
 class _Item extends StatelessWidget {
-  final CategoriesTypes categoryType;
+  final _Model  model;
 
-  const _Item({ required this.categoryType});
+  const _Item({ required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +83,7 @@ class _Item extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(10.r),
           child: AppImage(
-            imageURL: categoryType.imgURL,
+            image: model.image,
             height: 69.h,
             width: 64.w,
             fit: BoxFit.cover,
@@ -85,7 +91,7 @@ class _Item extends StatelessWidget {
         ),
         SizedBox(width: 12.w),
         Text(
-          categoryType.categoryTypeName,
+          model.name,
           style: TextStyle(
             color: Color(0xff434C6D),
             fontSize: 14.sp,
@@ -93,15 +99,15 @@ class _Item extends StatelessWidget {
           ),
         ),
         Spacer(),
-        AppImage(imageURL: "arrow_right.svg"),
+        AppImage(image: "arrow_right.svg"),
       ],
     );
   }
 }
 
-class CategoriesTypes {
-  final String imgURL;
-  final String categoryTypeName;
+class _Model {
+  final String image;
+  final String name;
 
-  const CategoriesTypes({required this.imgURL, required this.categoryTypeName});
+  const _Model ({required this.image, required this.name});
 }

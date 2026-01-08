@@ -1,65 +1,71 @@
+
 import 'package:cosmetics/core/ui/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppCountryCode extends StatefulWidget {
-  const AppCountryCode({super.key});
+  final ValueChanged<String>? onCountryCodeChanged;
+
+  const AppCountryCode({super.key, required this.onCountryCodeChanged});
 
   @override
   State<AppCountryCode> createState() => _AppCountryCodeState();
 }
 
 class _AppCountryCodeState extends State<AppCountryCode> {
-  late int myValue;
-  final list = [20, 966, 967];
+  late String selectedCountryCode;
+  final list = ["20", "966", "967"];
 
   @override
   void initState() {
     super.initState();
-    myValue = list.first;
+    selectedCountryCode = list.first;
+    widget.onCountryCodeChanged?.call(selectedCountryCode);
+
   }
+
   @override
   Widget build(BuildContext context) {
-    return     Row(
+    return Row(
       children: [
         Container(
-          padding: EdgeInsets.only(left: 6.0.w,),
+          padding: EdgeInsets.only(left: 6.0.w),
           decoration: BoxDecoration(
-            border: Border.all(
-              color: Color(0xff5A6690).withValues(alpha: .4),
-            ),
+            border: Border.all(color: Color(0xff5A6690).withValues(alpha: .4)),
             borderRadius: BorderRadius.circular(8.r),
           ),
           child: Center(
             child: DropdownButtonHideUnderline(
-              child: DropdownButton<int>(
-
-                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 3),
-                value: myValue,
+              child: DropdownButton<String>(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 3),
+                value: selectedCountryCode,
                 items: list
                     .map(
-                      (e) =>
-                      DropdownMenuItem(
+                      (e) => DropdownMenuItem(
                         value: e,
-                        child: Text('+$e ',style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff434C6D),
-                        ),),
+                        child: Text(
+                          '+$e ',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff434C6D),
+                          ),
+                        ),
                       ),
-                )
+                    )
                     .toList(),
                 onChanged: (value) {
-                  myValue = value!;
+                  selectedCountryCode = value!;
+                  widget.onCountryCodeChanged?.call(selectedCountryCode);
+
                   setState(() {});
                 },
                 icon: AppImage(
-                  imageURL: "arrow_down.svg",
+                  image: "arrow_down.svg",
                   color: Color(0xff767676),
                   width: 8.w,
                   height: 6.h,
                   fit: BoxFit.fill,
-
                 ),
                 style: TextStyle(
                   color: Color(0xff434C6D),
@@ -70,8 +76,7 @@ class _AppCountryCodeState extends State<AppCountryCode> {
             ),
           ),
         ),
-        SizedBox(width: 6.w,),
-
+        SizedBox(width: 6.w),
       ],
     );
   }

@@ -11,6 +11,9 @@ class AppInput extends StatefulWidget {
   final String? suffixIcon;
   final String? hintText, labelText;
   final double? bottomSpace;
+  final TextEditingController? controller;
+  final ValueChanged<String>? onCountryCodeChanged;
+  final String? Function(String?)? validator;
 
   const AppInput({
     super.key,
@@ -22,6 +25,9 @@ class AppInput extends StatefulWidget {
     this.isPassword = false,
     this.bottomSpace = 16,
     this.withCountryCode = false,
+    this.controller,
+    this.onCountryCodeChanged,
+    this.validator,
   });
 
   @override
@@ -29,33 +35,32 @@ class AppInput extends StatefulWidget {
 }
 
 class _AppInputState extends State<AppInput> {
-   bool isHidden=true;
-
+  bool isHidden = true;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: widget.bottomSpace ?? 16.h),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+
         children: [
-          if (widget.withCountryCode == true) AppCountryCode(),
+          if (widget.withCountryCode == true)
+            AppCountryCode(onCountryCodeChanged: widget.onCountryCodeChanged),
 
           Expanded(
             child: TextFormField(
+              controller: widget.controller,
+              validator: widget.validator,
               maxLength: 10,
               inputFormatters: [
-
-                if (widget.withCountryCode == true ) ...[
+                if (widget.withCountryCode == true) ...[
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(10),
                   FilteringTextInputFormatter.allow(RegExp(r'^1\d{0,9}$')),
                 ],
 
-                if(widget.withCountryCode==false)...[
-
-                ]
-
-
+                if (widget.withCountryCode == false) ...[],
               ],
               keyboardType: widget.keyboardType,
               obscureText: widget.isPassword && isHidden,
@@ -95,27 +100,22 @@ class _AppInputState extends State<AppInput> {
                 ),
 
                 suffixIcon: widget.isPassword
-                    ? IconButton(
-                        icon: AppImage(
-                          imageURL:isHidden
-                              ? "visability_off.svg"
-                              : "visability_on.svg",
-                          width: 24.w,
-                          height: 24.h,
+                    ? Padding(
+                      padding:  EdgeInsets.all(12.r),
+                      child: AppImage(
+                          image: 'password_visibility.json',
                           bottomSpace: 0,
+                          width: 20.w,
+                          height: 20.h,
+                                        fit: BoxFit.scaleDown,
+                                        onLottieClicked: () {
+                            isHidden = !isHidden;
+                            setState(() {});
+                          },
                         ),
-                        onPressed: () {
-                          isHidden = !isHidden;
-
-                          setState(() {});
-                        },
-                      )
+                    )
                     : widget.suffixIcon != null
-                    ? AppImage(
-                        imageURL: widget.suffixIcon!,
-                        width: 18,
-                        height: 18,
-                      )
+                    ? AppImage(image: widget.suffixIcon!, width: 18, height: 18)
                     : null,
 
                 suffixIconColor: Color(0xff8E8EA9),

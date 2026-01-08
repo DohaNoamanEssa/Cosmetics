@@ -21,3 +21,16 @@ void goTo(Widget page, {bool canPop = false, int? delayInSeconds}) {
     action();
   }
 }
+
+void showMsg (String msg){
+  if(msg.isNotEmpty){
+    ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+
+}

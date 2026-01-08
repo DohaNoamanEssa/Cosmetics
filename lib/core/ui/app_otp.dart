@@ -17,36 +17,14 @@ class AppVerifyCode extends StatelessWidget {
       hintCharacter: "_",
       mainAxisAlignment: MainAxisAlignment.center,
       separatorBuilder: (builder, context) => SizedBox(width: 12.w),
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
-      ],
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(8.0.r),
-        activeColor:Color(0XFFD75D72),
-        selectedColor:Color(0XFFD75D72) ,
+        activeColor: Color(0XFFD75D72),
+        selectedColor: Color(0XFFD75D72),
         inactiveColor: Color(0XFF898992).withValues(alpha: .36),
       ),
     );
   }
 }
-
-// OtpTextField(
-//   margin: EdgeInsets.only(right: 12.0.w),
-//   numberOfFields: 4,
-//   borderColor: Color(0XFF898992).withValues(alpha: .36),
-//   focusedBorderColor: Color(0XFFD75D72),
-//   showFieldAsBox: true,
-//   borderRadius: BorderRadius.circular(8.0.r),
-//   borderWidth: 1.0.w,
-//   fieldWidth: 45.w,
-//   fieldHeight: 45.h,
-//   autoFocus: true,
-//   textStyle: TextStyle(
-//     fontWeight: FontWeight.w700,
-//     color: Color(0XFF434C6D),
-//     fontSize: 16.sp,
-//   ),
-//
-//   // end onSubmit
-// ),

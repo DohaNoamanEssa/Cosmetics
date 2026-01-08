@@ -30,7 +30,7 @@ class _ForgetPasswordState extends State<ForgetPasswordView> {
               Padding(
                 padding: EdgeInsets.only(top: 40.0.h),
                 child: AppImage(
-                  imageURL: "logo.png",
+                  image: "logo.png",
                   height: 80.h,
                   width: 80.w,
                 ),

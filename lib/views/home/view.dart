@@ -2,7 +2,7 @@ import 'package:cosmetics/core/ui/app_image.dart';
 import 'package:cosmetics/views/home/pages/categories.dart';
 import 'package:cosmetics/views/home/pages/home.dart';
 import 'package:cosmetics/views/home/pages/my_cart.dart';
-import 'package:cosmetics/views/home/pages/profile.dart';
+import 'package:cosmetics/views/home/pages/profile/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HomeView extends StatefulWidget {
@@ -61,7 +61,7 @@ class _HomeViewState extends State<HomeView> {
             list.length,
                 (index) =>
                 BottomNavigationBarItem(
-                  icon: AppImage(imageURL: list[index].iconURL, color: currentIndex==index? Theme.of(context).primaryColor :null,),
+                  icon: AppImage(image: list[index].iconURL, color: currentIndex==index? Theme.of(context).primaryColor :null,),
                   label: "",
                 ),
           ),

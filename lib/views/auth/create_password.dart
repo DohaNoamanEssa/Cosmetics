@@ -5,26 +5,23 @@ import '../../core/ui/app_button.dart';
 import '../../core/ui/app_image.dart';
 import '../../core/ui/app_input.dart';
 
-
 class CreatePasswordView extends StatelessWidget {
-
-
-   const CreatePasswordView({super.key});
+  const CreatePasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding:  EdgeInsets.all(13.0.r).copyWith(top: 40.h),
+          padding: EdgeInsets.all(13.0.r).copyWith(top: 40.h),
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding:  EdgeInsets.only(top: 40.0.h,bottom: 20.h),
-                child: AppImage(imageURL:
-                "logo.png",
+                padding: EdgeInsets.only(top: 40.0.h, bottom: 20.h),
+                child: AppImage(
+                  image: "logo.png",
                   height: 80.h,
                   width: 80.w,
                 ),
@@ -41,27 +38,31 @@ class CreatePasswordView extends StatelessWidget {
 
               Text(
                 textAlign: TextAlign.center,
-                "The password should have at least\n6 characters.",style: TextStyle(
-                  fontSize: 14.sp,fontWeight: FontWeight.w400,color: Color(0xff8E8EA9),),
+                "The password should have at least\n6 characters.",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff8E8EA9),
+                ),
               ),
-
 
               SizedBox(height: 80.h),
+              AppInput(labelText: "New password", isPassword: true),
               AppInput(
-                labelText: "New password",
-                isPassword: true,
-
-              ),
-              AppInput(
-                labelText:"Confirm password" ,
+                labelText: "Confirm password",
                 bottomSpace: 71.h,
                 isPassword: true,
-
               ),
 
-              AppButton(buttonTitle: "Confirm",onPressed: (){
-                showDialog(context: context, builder: (context)=>DialogePage(isCreatePassword: true,));
-              },),
+              AppButton(
+                buttonTitle: "Confirm",
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => SuccessDialog(isCreatePassword: true),
+                  );
+                },
+              ),
             ],
           ),
         ),

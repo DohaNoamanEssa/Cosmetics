@@ -6,11 +6,16 @@ final  String buttonTitle;
 final    Color? buttonColor;
 final VoidCallback? onPressed;
 final  String prefixIcon;
-final bool isIcon;
-   const AppButton( {super.key, required this.buttonTitle, this.buttonColor, this.onPressed ,   this.prefixIcon="",  this.isIcon=false}) ;
+final bool isIcon,isLoading;
+   const AppButton( {super.key, this.buttonColor, this.onPressed ,   this.prefixIcon="",  this.isIcon=false,  this.isLoading=false, required this.buttonTitle}) ;
 
   @override
   Widget build(BuildContext context) {
+if(isLoading){
+  return Center(
+    child: CircularProgressIndicator(),
+  );
+}
 
     return
       (buttonTitle=="Order")?
@@ -27,7 +32,7 @@ final bool isIcon;
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if(isIcon)
-              AppImage(imageURL: prefixIcon,),
+              AppImage(image: prefixIcon,),
 
             Row(
               children: [

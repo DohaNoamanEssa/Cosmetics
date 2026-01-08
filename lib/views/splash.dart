@@ -1,5 +1,8 @@
+import 'package:cosmetics/core/logic/cache_helper.dart';
 import 'package:cosmetics/core/logic/helper_methods.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
+import 'package:cosmetics/main.dart';
+import 'package:cosmetics/views/auth/login.dart';
 import 'package:cosmetics/views/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,8 +19,9 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   initState() {
+
     super.initState();
-    goTo(OnBoardingView(), delayInSeconds: 2);
+    goTo(CacheHelper.isFirstTime?OnBoardingView():LoginView(), delayInSeconds: 2);
   }
 
 
@@ -28,8 +32,8 @@ class _SplashViewState extends State<SplashView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Jello(child: AppImage(imageURL: "logo.png",width: 200.w,height: 200.h,bottomSpace: 16.h,)),
-            AppImage(imageURL: "splash_txt.png",width: 120.w,height: 46.h,),
+            Jello(child: AppImage(image: "logo.png",width: 200.w,height: 200.h,bottomSpace: 16.h,)),
+            AppImage(image: "splash_txt.png",width: 120.w,height: 46.h,),
           ],
         ),
       ),

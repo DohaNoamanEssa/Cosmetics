@@ -1,3 +1,4 @@
+import 'package:cosmetics/core/logic/cache_helper.dart';
 import 'package:cosmetics/core/logic/helper_methods.dart';
 import 'package:cosmetics/core/ui/app_button.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
@@ -34,41 +35,42 @@ class _OnBoardindViewState extends State<OnBoardingView> {
     ),
   ];
   int currentIndex = 0;
-  int lastIndex=2;
+  int lastIndex = 2;
+
+  void gotoLogin() {
+    CacheHelper.setIsNotFirstTime();
+    goTo(LoginView());
+  }
 
   @override
   Widget build(BuildContext context) {
-    bool isLast =currentIndex == list.length-1;
-    final currentItem=list[currentIndex];
+    bool isLast = currentIndex == list.length - 1;
+    final currentItem = list[currentIndex];
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Padding(
-            padding: EdgeInsets.all(20.0.r),
-            child: (!isLast)
-                ? InkWell(
-                    onTap: () => goTo(LoginView()),
-                    child: Text(
-                      "skip",
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff434C6D),
-                      ),
-                    ),
-                  )
-                : null,
-          ),
+          if (!isLast)
+            Padding(
+              padding: EdgeInsets.all(20.0.r),
+              child: InkWell(
+                onTap: () => goTo(LoginView()),
+                child: Text(
+                  "Skip",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xff434C6D),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
       body: Center(
         child: Column(
           children: [
             SizedBox(height: 78.h),
-            AppImage(
-              imageURL: currentItem.imgURL,
-              bottomSpace: 28.h,
-            ),
+            AppImage(image: currentItem.imgURL, bottomSpace: 28.h),
             Text(
               currentItem.title,
               style: TextStyle(
@@ -91,27 +93,25 @@ class _OnBoardindViewState extends State<OnBoardingView> {
             SizedBox(height: 30.h),
             (isLast)
                 ? AppButton(
-              buttonTitle: "let’s start!",
-              buttonColor: Color(0xff434C6D),
-              onPressed: ()=>goTo(LoginView()),
-            )
-
-                :   FloatingActionButton(
-          onPressed: () {
-            if (currentIndex < list.length) {
-            currentIndex++;
-            }
-            setState(() {});
-            },
-              backgroundColor: Color(0xff434C6D),
-              child: AppImage(
-        imageURL: "arrow_right_splash.svg",
-        width: 8.w,
-        height: 18.h,
-        color: Color(0xffD9D9D9),
-              ),
-            ),
-
+                    buttonTitle: "let’s start!",
+                    buttonColor: Color(0xff434C6D),
+                    onPressed: () => gotoLogin(),
+                  )
+                : FloatingActionButton(
+                    onPressed: () {
+                      if (currentIndex < list.length) {
+                        currentIndex++;
+                      }
+                      setState(() {});
+                    },
+                    backgroundColor: Color(0xff434C6D),
+                    child: AppImage(
+                      image: "arrow_right_splash.svg",
+                      width: 8.w,
+                      height: 18.h,
+                      color: Color(0xffD9D9D9),
+                    ),
+                  ),
           ],
         ),
       ),
@@ -124,9 +124,5 @@ class _Model {
   final String title;
   final String subTitle;
 
-  _Model({
-    required this.imgURL,
-    required this.title,
-    required this.subTitle,
-  });
+  _Model({required this.imgURL, required this.title, required this.subTitle});
 }
