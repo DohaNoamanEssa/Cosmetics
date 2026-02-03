@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 
@@ -19,7 +20,8 @@ class AppImage extends StatefulWidget {
     this.isCircle = false,
     this.color,
     this.fit = BoxFit.scaleDown,
-    this.bottomSpace, this.onLottieClicked,
+    this.bottomSpace,
+    this.onLottieClicked,
   });
 
   @override
@@ -28,7 +30,7 @@ class AppImage extends StatefulWidget {
 
 class _AppImageState extends State<AppImage>
     with SingleTickerProviderStateMixin {
-    AnimationController? _controller;
+  AnimationController? _controller;
 
   @override
   void initState() {
@@ -72,6 +74,14 @@ class _AppImageState extends State<AppImage>
               height: widget.height,
               width: widget.width,
               fit: myFit,
+              errorBuilder: (context, error, stackTrace) => AppImage(
+                image:
+                    "https://i1.sndcdn.com/artworks-oohkYejHXhnGTmX8-oDwUWg-t500x500.jpg",
+                color: widget.color,
+                height: widget.height,
+                width: widget.width,
+                fit: myFit,
+              ),
 
               // loadingBuilder: (context, child, loadingProgress) => Center(child: CircularProgressIndicator()),
             );
@@ -84,9 +94,8 @@ class _AppImageState extends State<AppImage>
               controller: _controller,
             );
 
-
             if (widget.onLottieClicked != null) {
-             child= GestureDetector(
+              child = GestureDetector(
                 onTap: () {
                   if (_controller!.isCompleted) {
                     _controller!.reverse();
@@ -94,13 +103,11 @@ class _AppImageState extends State<AppImage>
                     _controller!.forward();
                   }
                   widget.onLottieClicked?.call();
-
                 },
-                child:child,
+                child: child,
               );
             }
-          }
-          else {
+          } else {
             child = Image.asset(
               "assets/images/${widget.image}",
               color: widget.color,

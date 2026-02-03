@@ -1,3 +1,5 @@
+import 'package:cosmetics/core/logic/cache_helper.dart';
+import 'package:cosmetics/core/logic/dio_helper.dart';
 import 'package:cosmetics/core/logic/helper_methods.dart';
 import 'package:cosmetics/core/logic/input_validator.dart';
 import 'package:cosmetics/core/ui/app_button.dart';
@@ -5,6 +7,7 @@ import 'package:cosmetics/core/ui/app_image.dart';
 import 'package:cosmetics/core/ui/app_input.dart';
 import 'package:cosmetics/core/ui/app_login_or_register.dart';
 import 'package:cosmetics/views/auth/forget_password.dart';
+import 'package:cosmetics/views/home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +23,44 @@ class _LoginViewState extends State<LoginView> {
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-bool isLoginClicked=false;
+  bool isLoginClicked = false;
+
+  DataState? state;
+
+  Future<void> sendData() async {
+    state = DataState.loading;
+    setState(() {
+
+    });
+    final phone = phoneController.text.trim();
+    final password = passwordController.text.trim();
+
+    final resp = await DioHelper.sendData(
+      path: "api/Auth/login",
+      data: {
+        "countryCode": selectedCountryCode,
+        "phoneNumber": phone,
+        "password": password,
+      },
+    );
+    if (resp!.isSuccess) {
+      state =DataState.success;
+      showMsg("Login Success");
+      //Save Data In Shared Preferences
+      // resp.data need to ne saved in shared preferences
+      final model =UserData.fromJson(resp.data);
+      await CacheHelper.saveUserData(model);
+      goTo(HomeView(),canPop: false);
+
+    } else {
+      state =DataState.failed;
+      showMsg(resp.msg, isError: true);
+    }
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +68,9 @@ bool isLoginClicked=false;
         child: Form(
           key: formKey,
           onChanged: () {
-            if(isLoginClicked)
-              {
-                formKey.currentState?.validate();
-
-              }
+            if (isLoginClicked) {
+              formKey.currentState?.validate();
+            }
           },
           child: SingleChildScrollView(
             padding: EdgeInsets.all(13.0.r).copyWith(top: 103.h),
@@ -101,12 +139,11 @@ bool isLoginClicked=false;
                 ),
                 AppButton(
                   buttonTitle: "Login",
-                  isLoading: false,
+                  isLoading: state==DataState.loading ,
                   onPressed: () {
-                    isLoginClicked=true;
+                    isLoginClicked = true;
                     if (formKey.currentState!.validate()) {
-                      final phone = phoneController.text.trim();
-                      final password = passwordController.text.trim();
+                      sendData();
                     }
 
                     // goTo(HomeView());
@@ -121,4 +158,40 @@ bool isLoginClicked=false;
       bottomNavigationBar: AppLoginOrRegister(),
     );
   }
+}
+
+class UserData {
+
+  late final String token;
+  late final UserModel user;
+
+  UserData.fromJson(Map<String, dynamic> json){
+    token = json['token']??"";
+    user = UserModel.fromJson(json['user']);
+  }
+
+
+}
+
+class UserModel {
+
+  late final int id;
+  late final String username;
+  late final String email;
+  late final String phoneNumber;
+  late final String countryCode;
+  late final String role;
+  late final String profilePhotoUrl;
+
+  UserModel.fromJson(Map<String, dynamic> json){
+    id = json['id']??0;
+    username = json['username']??"";
+    email = json['email']??"";
+    phoneNumber = json['phoneNumber']??"";
+    countryCode = json['countryCode']??"";
+    role = json['role']??"";
+    profilePhotoUrl = json['profilePhotoUrl']??"";
+  }
+
+
 }

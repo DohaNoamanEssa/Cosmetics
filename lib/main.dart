@@ -1,14 +1,12 @@
 import 'package:cosmetics/core/logic/cache_helper.dart';
 import 'package:cosmetics/core/logic/helper_methods.dart';
-import 'package:cosmetics/views/auth/login.dart';
 import 'package:cosmetics/views/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-void main()  async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await CacheHelper.init();
+  await CacheHelper.init();
   runApp(CosmaticsApp());
 }
 
@@ -29,9 +27,8 @@ class CosmaticsApp extends StatelessWidget {
             filledButtonTheme: FilledButtonThemeData(
               style: FilledButton.styleFrom(
                 disabledBackgroundColor: Colors.yellowAccent,
-                backgroundColor:Color(0xffD75D72),
+                backgroundColor: Color(0xffD75D72),
               ),
-
             ),
             textTheme: TextTheme(
               bodyMedium: TextStyle(color: Color(0xff434C6D)),
@@ -42,7 +39,7 @@ class CosmaticsApp extends StatelessWidget {
             fontFamily: "Montserrat",
             cardColor: Theme.of(context).cardColor,
 
-            appBarTheme:  AppBarTheme(
+            appBarTheme: AppBarTheme(
               surfaceTintColor: Colors.transparent,
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -86,7 +83,7 @@ class CosmaticsApp extends StatelessWidget {
             scaffoldBackgroundColor: const Color(0xffD9D9D9),
           ),
 
-          home: LoginView(),
+          home: SplashView(),
         );
       },
     );

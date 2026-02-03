@@ -1,3 +1,4 @@
+import 'package:cosmetics/views/auth/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
@@ -21,5 +22,24 @@ class CacheHelper {
 
   static String get email {
     return _prefs.getString("email") ?? "";
+  }
+
+  static bool get isAuth {
+    return (_prefs.getString("token")??"").isNotEmpty;
+  }
+
+  static Future<void> saveUserData(UserData model)async
+  {
+    _prefs.setString("token", model.token);
+    _prefs.setInt("id", model.user.id);
+    _prefs.setString("username", model.user.username);
+    _prefs.setString("countryCode", model.user.countryCode);
+    _prefs.setString("phoneNumber", model.user.phoneNumber);
+    _prefs.setString("email", model.user.email);
+    _prefs.setString("role", model.user.role);
+    _prefs.setString("profilePhotoUrl", model.user.profilePhotoUrl);
+
+
+
   }
 }

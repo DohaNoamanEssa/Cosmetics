@@ -3,6 +3,7 @@ import 'package:cosmetics/core/logic/helper_methods.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
 import 'package:cosmetics/main.dart';
 import 'package:cosmetics/views/auth/login.dart';
+import 'package:cosmetics/views/home/view.dart';
 import 'package:cosmetics/views/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +22,7 @@ class _SplashViewState extends State<SplashView> {
   initState() {
 
     super.initState();
-    goTo(CacheHelper.isFirstTime?OnBoardingView():LoginView(), delayInSeconds: 2);
+    goTo(CacheHelper.isFirstTime?OnBoardingView():CacheHelper.isAuth?HomeView():LoginView(), delayInSeconds: 2);
   }
 
 
