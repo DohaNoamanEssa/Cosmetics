@@ -25,11 +25,14 @@ class CacheHelper {
   }
 
   static bool get isAuth {
-    return (_prefs.getString("token")??"").isNotEmpty;
+    return token.isNotEmpty;
   }
 
-  static Future<void> saveUserData(UserData model)async
-  {
+  static String get token {
+    return _prefs.getString("token") ?? "";
+  }
+
+  static Future<void> saveUserData(UserData model) async {
     _prefs.setString("token", model.token);
     _prefs.setInt("id", model.user.id);
     _prefs.setString("username", model.user.username);
@@ -38,8 +41,16 @@ class CacheHelper {
     _prefs.setString("email", model.user.email);
     _prefs.setString("role", model.user.role);
     _prefs.setString("profilePhotoUrl", model.user.profilePhotoUrl);
+  }
 
-
-
+  static Future<void> logout() async {
+    await _prefs.remove("token");
+    await _prefs.remove("id");
+    await _prefs.remove("username");
+    await _prefs.remove("phoneNumber");
+    await _prefs.remove("countryCode");
+    await _prefs.remove("profilePhotoUrl");
+    await _prefs.remove("role");
+    await _prefs.remove("email");
   }
 }

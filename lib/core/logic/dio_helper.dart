@@ -1,5 +1,7 @@
+import 'package:cosmetics/core/logic/cache_helper.dart';
+import 'package:cosmetics/core/logic/helper_methods.dart';
+import 'package:cosmetics/views/auth/login.dart';
 import 'package:dio/dio.dart';
-
 
 enum DataState { loading, failed, success }
 
@@ -11,6 +13,7 @@ class DioHelper {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
+        "Authorization": "Bearer ${CacheHelper.token}",
       },
     ),
   );
@@ -29,6 +32,10 @@ class DioHelper {
       return CustomResponse(isSuccess: false);
     } on DioException catch (ex) {
       if (ex.response?.data != null && ex.response?.data is Map) {}
+      if (ex.response?.statusCode == 401) {
+        CacheHelper.logout();
+        goTo(LoginView());
+      }
       return CustomResponse(isSuccess: false, data: ex.response?.data);
       // ex.response?.data["message"]
     }

@@ -1,3 +1,7 @@
+import 'package:cosmetics/core/logic/cache_helper.dart';
+import 'package:cosmetics/core/logic/dio_helper.dart';
+import 'package:cosmetics/core/logic/helper_methods.dart';
+import 'package:cosmetics/views/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/ui/app_image.dart';
@@ -30,6 +34,7 @@ class ProfilePage extends StatelessWidget {
                     _Item(
                       icon: "logout.svg",
                       title: "Logout",
+                      destinationPage: LoginView(),
                       withSuffixIcon: false,
                     ),
                   ],
