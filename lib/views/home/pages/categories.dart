@@ -77,7 +77,7 @@ class _Item extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(10.r),
           child: AppImage(
-            imageURL: categoryType.imgURL,
+            image: categoryType.imgURL,
             height: 69.h,
             width: 64.w,
             fit: BoxFit.cover,
@@ -93,7 +93,7 @@ class _Item extends StatelessWidget {
           ),
         ),
         Spacer(),
-        AppImage(imageURL: "arrow_right.svg"),
+        AppImage(image: "arrow_right.svg"),
       ],
     );
   }

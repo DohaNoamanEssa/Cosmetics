@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
                             bottomSpace: 0,
                             height: 96.h,
                             width: 96.w,
-                            imageURL:
+                            image:
                                 "https://astrologyonline.net/img/dreams/994/7-symbolic-interpretations-dreams-about-hair_10.jpg",
                           ),
                         ),
@@ -102,7 +102,7 @@ class ProfileDetails extends StatelessWidget {
         SizedBox(height: 34.h,),
         Row(
           children: [
-            AppImage(imageURL: iconName,bottomSpace: 0,
+            AppImage(image: iconName,bottomSpace: 0,
               color: withSuffixIcon?Color(0xff434C6D):Color(0XFFCD0F0F),),
             SizedBox(width: 8.w,),
             Text(
@@ -116,7 +116,7 @@ class ProfileDetails extends StatelessWidget {
 
             Spacer(),
             withSuffixIcon?
-            AppImage(imageURL: "arrow_right.svg",color: Color(0xff434C6D),):Text(""),
+            AppImage(image: "arrow_right.svg",color: Color(0xff434C6D),):Text(""),
 
 
           ],

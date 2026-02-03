@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.center,
                   children: [
                     AppImage(
-                      imageURL:
+                      image:
                           "https://img.buzzfeed.com/buzzfeed-static/static/2019-08/16/2/asset/2f2486d35771/sub-buzz-2247-1565922471-1.jpg",
 
                       height: 320.h,
@@ -72,12 +72,12 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              AppImage(imageURL: "discount.svg"),
+                              AppImage(image: "discount.svg"),
                             ],
                           ),
                           Row(
                             children: [
-                              AppImage(imageURL: "discount.svg"),
+                              AppImage(image: "discount.svg"),
                               Spacer(),
                               Text(
                                 "Hurry up!\nSkin care only !",
@@ -159,7 +159,7 @@ class _Item extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(4.r),
                   child: AppImage(
-                    imageURL: category.catImgURL,
+                    image: category.catImgURL,
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
@@ -190,7 +190,7 @@ class _Item extends StatelessWidget {
           padding:  EdgeInsets.all(12.0.r),
           child: Align(
             alignment: AlignmentDirectional.topEnd,
-            child: AppImage(imageURL: "check_out.svg"),
+            child: AppImage(image: "check_out.svg"),
           ),
         ),
       ],
