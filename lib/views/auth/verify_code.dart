@@ -34,7 +34,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
               AppBack(),
               SizedBox(height: 40.h,),
               AppImage(
-                imageURL: "logo.png",
+                image: "logo.png",
                 height: 62.h,
                 width: 67.w,
                 bottomSpace: 40.h,
@@ -92,7 +92,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
               ),
               SizedBox(height: 40.h),
               Align(
-                alignment: Alignment.topLeft,
+                alignment: AlignmentDirectional.topStart,
                 child: TextButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -118,12 +118,12 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                 buttonTitle: "Done",
                 onPressed: () {
                   setState(() {
-                    if (widget.isForgetPassword == true) {
+                    if (widget.isForgetPassword) {
                       goTo(CreatePasswordView());
                     } else {
                       showDialog(
                         context: context,
-                        builder: (context) => DialogePage(),
+                        builder: (context) => SuccessDialog(),
                       );
                     }
                   });

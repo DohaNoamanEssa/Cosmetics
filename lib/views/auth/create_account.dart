@@ -21,7 +21,7 @@ class CreateAccountView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(height: 40.h,),
-              AppImage(imageURL:
+              AppImage(image:
                 "logo.png",
                 height: 67.h,
                 width: 62.w,

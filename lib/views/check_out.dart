@@ -1,12 +1,13 @@
+import 'package:cosmetics/core/logic/helper_methods.dart';
 import 'package:cosmetics/core/ui/app_back.dart';
 import 'package:cosmetics/core/ui/app_button.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
+import 'package:cosmetics/views/pin_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 
 class CheckOutView extends StatefulWidget {
   const CheckOutView({super.key});
@@ -16,7 +17,6 @@ class CheckOutView extends StatefulWidget {
 }
 
 class _CheckOutViewState extends State<CheckOutView> {
-
   Future<void> _requestLocationPermission() async {
     var status = await Permission.location.status;
     if (!status.isGranted) {
@@ -32,48 +32,27 @@ class _CheckOutViewState extends State<CheckOutView> {
 
   @override
   Widget build(BuildContext context) {
+    final position=LatLng(31.1436, 31.7954);
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.all(13.0.r),
-          child:
-        AppBack(),
-        ),
+        leading: AppBack(paddingStart: 13),
         centerTitle: true,
-        title: Text(
-          "Checkout",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 24.sp,
-            color: Color(0xff434C6D),
-          ),
-        ),
+        title: Text("Checkout"),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(top: 18.h),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(40.w)),
+            color: Color(0xff29D3DA).withValues(alpha: .11),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 35.w),
 
-          child: Container(
-
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40.r),
-                topRight: Radius.circular(40.r),
-              ),
-              color: Color(0xff29D3DA).withValues(alpha: .11),
-            ),
-            padding: EdgeInsets.only(right: 35.w, left: 35.w),
-
-
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 //Text Delivery
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: 20.h,
-                    left: 27.w,
-                    bottom: 18.h,
-                  ),
+                  padding: EdgeInsets.only(top: 20.h, left: 27.w, bottom: 18.h),
                   child: Align(
                     alignment: AlignmentDirectional.topStart,
                     child: Text(
@@ -86,35 +65,44 @@ class _CheckOutViewState extends State<CheckOutView> {
                     ),
                   ),
                 ),
-                //Row------------Map------------------------------------------------------------
                 Container(
                   width: 309.w,
                   height: 84.h,
-                  padding: EdgeInsets.all(10.0.r),
+                  padding: EdgeInsets.all(10.r),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.r),
                     border: Border.all(color: Color(0xff73B9BB)),
                   ),
                   child: Row(
                     children: [
-                      //MAP **********************************************************************
                       ClipRRect(
                         borderRadius: BorderRadius.circular(5.r),
                         child: SizedBox(
                           height: 60.h,
                           width: 97.w,
-                          child: GoogleMap(
-                            initialCameraPosition: CameraPosition(
-                              target: LatLng((31.1436), (31.7954)),
-                              zoom: 5,
-                            ),
-                            zoomControlsEnabled: false,
-                            gestureRecognizers:
-                                <Factory<OneSequenceGestureRecognizer>>{
-                                  Factory<OneSequenceGestureRecognizer>(
-                                    () => EagerGestureRecognizer(),
+                          child: GestureDetector(
+                            onTap: () {
+                              // MapsLauncher.launchCoordinates(position.latitude, position.longitude);
+                            goTo(PinLocationView());
+                            },
+                            child: AbsorbPointer(
+                              child: GoogleMap(
+                                markers: {
+                                  Marker(
+                                    markerId: MarkerId("myLocation"),
+                                    position: position,
                                   ),
                                 },
+                                initialCameraPosition: CameraPosition(
+                                  target: position,
+                                  zoom: 5,
+                                ),
+                                zoomControlsEnabled: false,
+                                myLocationButtonEnabled: false,
+                                liteModeEnabled: true,
+
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -143,7 +131,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                         ],
                       ),
                       Spacer(),
-                      AppImage(imageURL: "arrow_down.svg"),
+                      AppImage(image: "arrow_down.svg"),
                     ],
                   ),
                 ),
@@ -172,11 +160,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                   padding: EdgeInsets.all(10.r),
                   child: Row(
                     children: [
-                      AppImage(
-                        imageURL: "pay.svg",
-                        width: 30.w,
-                        height: 20.h,
-                      ),
+                      AppImage(image: "pay.svg", width: 30.w, height: 20.h),
                       SizedBox(width: 10.w),
                       Text(
                         "**** ***** **** 0256",
@@ -187,12 +171,12 @@ class _CheckOutViewState extends State<CheckOutView> {
                         ),
                       ),
                       Spacer(),
-                      AppImage(imageURL: "arrow_down.svg"),
+                      AppImage(image: "arrow_down.svg"),
                     ],
                   ),
                 ),
                 SizedBox(height: 12.h),
-                //////////////////////////////////////////////////////////////////////////
+
                 Container(
                   width: 309.w,
                   height: 57.h,
@@ -203,11 +187,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                   padding: EdgeInsets.all(10.r),
                   child: Row(
                     children: [
-                      AppImage(
-                        imageURL: "offer.svg",
-                        width: 24.w,
-                        height: 24.h,
-                      ),
+                      AppImage(image: "offer.svg", width: 24.w, height: 24.h),
                       SizedBox(width: 6.w),
                       Text(
                         "Add vaucher",
@@ -236,12 +216,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                 ),
                 SizedBox(height: 31.5.h),
 
-                //################################################################################
-                // DashedLine(),
-                Text(
-                  "-"*1000,
-                  maxLines: 1,
-                ),
+                Text("-" * 1000, maxLines: 1),
 
                 SizedBox(height: 31.5.h),
                 Align(
@@ -324,7 +299,7 @@ class _CheckOutViewState extends State<CheckOutView> {
                   ],
                 ),
                 SizedBox(height: 30.h),
-                Divider(color: Color(0xff73B9BB),),
+                Divider(color: Color(0xff73B9BB)),
                 Row(
                   children: [
                     Align(

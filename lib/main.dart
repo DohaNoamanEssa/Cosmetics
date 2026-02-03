@@ -1,9 +1,12 @@
+import 'package:cosmetics/core/logic/cache_helper.dart';
 import 'package:cosmetics/core/logic/helper_methods.dart';
 import 'package:cosmetics/views/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main()  {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   runApp(CosmaticsApp());
 }
 
@@ -22,9 +25,10 @@ class CosmaticsApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             filledButtonTheme: FilledButtonThemeData(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(const Color(0xffD75D72)),
-              )
+              style: FilledButton.styleFrom(
+                disabledBackgroundColor: Colors.yellowAccent,
+                backgroundColor: Color(0xffD75D72),
+              ),
             ),
             textTheme: TextTheme(
               bodyMedium: TextStyle(color: Color(0xff434C6D)),
@@ -35,12 +39,12 @@ class CosmaticsApp extends StatelessWidget {
             fontFamily: "Montserrat",
             cardColor: Theme.of(context).cardColor,
 
-            appBarTheme:  AppBarTheme(
+            appBarTheme: AppBarTheme(
               surfaceTintColor: Colors.transparent,
               backgroundColor: Colors.transparent,
               elevation: 0,
               titleTextStyle: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
                 fontSize: 24.sp,
                 color: Color(0xff434C6D),
               ),

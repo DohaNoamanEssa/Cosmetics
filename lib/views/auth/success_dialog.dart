@@ -6,16 +6,16 @@ import 'package:cosmetics/views/home/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DialogePage extends StatefulWidget {
+class SuccessDialog extends StatefulWidget {
   final bool isCreatePassword;
 
-  const DialogePage({super.key, this.isCreatePassword = false});
+  const SuccessDialog({super.key, this.isCreatePassword = false});
 
   @override
-  State<DialogePage> createState() => _DialogePageState();
+  State<SuccessDialog> createState() => _DialogePageState();
 }
 
-class _DialogePageState extends State<DialogePage> {
+class _DialogePageState extends State<SuccessDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -24,19 +24,20 @@ class _DialogePageState extends State<DialogePage> {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.r)),
         padding: EdgeInsets.all(8.0.r),
 
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             AppImage(
-              imageURL: "checked_dialog.json",
+              image: "success.json",
               width: 70.w,
               height: 70.h,
               bottomSpace: 26.h,
             ),
             Text(
-              widget.isCreatePassword ? "  Password Created!" : "Account Activated!",
+              widget.isCreatePassword
+                  ? " Password Created!"
+                  : "Account Activated!",
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Color(0xff434C6D),
@@ -58,20 +59,14 @@ class _DialogePageState extends State<DialogePage> {
 
             SizedBox(height: 20.h),
             AppButton(
-              buttonTitle: widget.isCreatePassword ? "Return to login" : "Go to home",
+              buttonTitle: widget.isCreatePassword
+                  ? "Return to login"
+                  : "Go to home",
               onPressed: () {
-                if(widget.isCreatePassword){
-                  goTo(LoginView(),canPop: false);
-                }
-                else{
-                  goTo(HomeView());
-                }
-
+                (widget.isCreatePassword)
+                    ? goTo(LoginView(), canPop: false)
+                    : goTo(HomeView());
               },
-
-
-
-
             ),
           ],
         ),

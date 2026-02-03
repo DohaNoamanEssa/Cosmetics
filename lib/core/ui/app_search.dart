@@ -25,7 +25,7 @@ class AppSearch extends StatelessWidget {
     borderRadius: BorderRadius.circular(25.r),
     ),
 
-        suffixIcon:AppImage(imageURL: "search.svg"),
+        suffixIcon:AppImage(image: "search.svg"),
 
         suffixIconColor: Color(0xff8E8EA9),
 
