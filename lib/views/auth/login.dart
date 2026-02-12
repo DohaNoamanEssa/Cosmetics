@@ -29,9 +29,7 @@ class _LoginViewState extends State<LoginView> {
 
   Future<void> sendData() async {
     state = DataState.loading;
-    setState(() {
-
-    });
+    setState(() {});
     final phone = phoneController.text.trim();
     final password = passwordController.text.trim();
 
@@ -44,21 +42,18 @@ class _LoginViewState extends State<LoginView> {
       },
     );
     if (resp!.isSuccess) {
-      state =DataState.success;
+      state = DataState.success;
       showMsg("Login Success");
       //Save Data In Shared Preferences
       // resp.data need to ne saved in shared preferences
-      final model =UserData.fromJson(resp.data);
-      await CacheHelper.saveUserData(model);
-      goTo(HomeView(),canPop: false);
-
+      final data = UserData.fromJson(resp.data);
+      await CacheHelper.saveUserData(data: data);
+      goTo(HomeView(), canPop: false);
     } else {
-      state =DataState.failed;
+      state = DataState.failed;
       showMsg(resp.msg, isError: true);
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -139,7 +134,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 AppButton(
                   buttonTitle: "Login",
-                  isLoading: state==DataState.loading ,
+                  isLoading: state == DataState.loading,
                   onPressed: () {
                     isLoginClicked = true;
                     if (formKey.currentState!.validate()) {
@@ -161,20 +156,16 @@ class _LoginViewState extends State<LoginView> {
 }
 
 class UserData {
-
   late final String token;
   late final UserModel user;
 
-  UserData.fromJson(Map<String, dynamic> json){
-    token = json['token']??"";
+  UserData.fromJson(Map<String, dynamic> json) {
+    token = json['token'] ?? "";
     user = UserModel.fromJson(json['user']);
   }
-
-
 }
 
 class UserModel {
-
   late final int id;
   late final String username;
   late final String email;
@@ -183,15 +174,13 @@ class UserModel {
   late final String role;
   late final String profilePhotoUrl;
 
-  UserModel.fromJson(Map<String, dynamic> json){
-    id = json['id']??0;
-    username = json['username']??"";
-    email = json['email']??"";
-    phoneNumber = json['phoneNumber']??"";
-    countryCode = json['countryCode']??"";
-    role = json['role']??"";
-    profilePhotoUrl = json['profilePhotoUrl']??"";
+  UserModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'] ?? 0;
+    username = json['username'] ?? "";
+    email = json['email'] ?? "";
+    phoneNumber = json['phoneNumber'] ?? "";
+    countryCode = json['countryCode'] ?? "";
+    role = json['role'] ?? "";
+    profilePhotoUrl = json['profilePhotoUrl'] ?? "";
   }
-
-
 }

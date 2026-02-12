@@ -3,10 +3,8 @@ import 'package:cosmetics/core/ui/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class AppCountryCode extends StatefulWidget {
   final ValueChanged<String>? onCountryCodeChanged;
-
   const AppCountryCode({super.key, required this.onCountryCodeChanged});
 
   @override
@@ -36,6 +34,8 @@ class _AppCountryCodeState extends State<AppCountryCode> {
           .map((e) => CountryModel.fromJson(e))
           .toList();
       selectedCountryCode = list.first.code;
+      widget.onCountryCodeChanged?.call(selectedCountryCode);
+
       state = DataState.success;
     } else {
       state = DataState.failed;

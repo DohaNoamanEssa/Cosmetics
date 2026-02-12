@@ -60,7 +60,7 @@ class CreateAccountView extends StatelessWidget {
               ),
               SizedBox(height: 90.h),
               AppButton(buttonTitle: "Next",onPressed: (){
-                goTo(VerifyCodePage(
+                goTo(VerifyCodeView(
                   isForgetPassword: false,
                 ),canPop: true);
               },),

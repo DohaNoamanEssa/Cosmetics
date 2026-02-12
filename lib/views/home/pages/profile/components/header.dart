@@ -1,6 +1,5 @@
 part of '../view.dart';
 class _Header extends StatelessWidget {
-  const _Header({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +22,7 @@ class _Header extends StatelessWidget {
             width: double.infinity,
           ),
           Align(
+
             alignment: AlignmentDirectional.bottomCenter,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -31,12 +31,10 @@ class _Header extends StatelessWidget {
                   height: 96.h,
                   width: 96.w,
                   isCircle: true,
-                  image:
-                  "https://astrologyonline.net/img/dreams/994/7-symbolic-interpretations-dreams-about-hair_10.jpg",
-                ),
+                  image:CacheHelper.image),
                 SizedBox(height: 16.h),
                 Text(
-                  "Sara Samer Talaat",
+                  CacheHelper.name,
                   style: TextStyle(
                     color: Color(0xFF434c6D),
                     fontSize: 16.sp,

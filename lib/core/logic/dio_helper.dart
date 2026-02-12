@@ -13,7 +13,6 @@ class DioHelper {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": "Bearer ${CacheHelper.token}",
       },
     ),
   );
@@ -22,6 +21,9 @@ class DioHelper {
     String path = "",
     Map<String, dynamic>? data,
   }) async {
+    _dio.options.headers.addAll({
+      "Authorization": "Bearer ${CacheHelper.token}",
+    });
     try {
       final resp = await _dio.post(path, data: data);
 
@@ -45,15 +47,27 @@ class DioHelper {
     String path, {
     Map<String, dynamic>? queryParametes,
   }) async {
+    _dio.options.headers.addAll({
+      "Authorization": "Bearer ${CacheHelper.token}",
+    });
     try {
       final resp = await _dio.get(path, queryParameters: queryParametes);
       if (resp.statusCode == 200) {
         return CustomResponse(isSuccess: true, data: resp.data);
+      } else {
+        showMsg(
+          "msgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsg",
+        );
       }
 
       return CustomResponse(isSuccess: false, data: resp.data);
     } on DioException catch (ex) {
+      if (ex.response?.statusCode == 401) {
+        CacheHelper.logout();
+        goTo(LoginView());
+      }
       return CustomResponse(isSuccess: false, data: ex.response?.data);
+
       // ex.response?.data["message"]
     }
   }
@@ -61,10 +75,10 @@ class DioHelper {
 
 class CustomResponse {
   final bool isSuccess;
-  final data;
+  final dynamic data;
   late final String? msg;
 
   CustomResponse({required this.isSuccess, this.data}) {
-    msg = data is Map ? data['message'] : null;
+    msg = data is Map ? data['message'] ?? data['CountryCode'][0] : null;
   }
 }

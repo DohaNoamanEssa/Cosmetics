@@ -34,9 +34,7 @@ class _Item extends StatelessWidget {
                  goTo(destinationPage!);
 
                }
-             else{
-               showMsg("something WRONG",isError: true);
-             }
+
              // send logout api
               // clear cache
             }

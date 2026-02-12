@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class AppVerifyCode extends StatelessWidget {
-  const AppVerifyCode({super.key});
+class AppOTP extends StatelessWidget {
+  const AppOTP({super.key});
 
   @override
   Widget build(BuildContext context) {

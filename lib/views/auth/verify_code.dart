@@ -9,17 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/ui/app_back.dart';
 
-class VerifyCodePage extends StatefulWidget {
+class VerifyCodeView extends StatefulWidget {
   final bool isForgetPassword;
 
-  const VerifyCodePage({super.key, this.isForgetPassword = false});
+  const VerifyCodeView({super.key, this.isForgetPassword = false});
 
   @override
-  State<VerifyCodePage> createState() => _VerifyCodePageState();
+  State<VerifyCodeView> createState() => _VerifyCodeViewState();
 }
 
-class _VerifyCodePageState extends State<VerifyCodePage> {
-  _VerifyCodePageState();
+class _VerifyCodeViewState extends State<VerifyCodeView> {
+  _VerifyCodeViewState();
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +109,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
               ),
               SizedBox(height: 35.h),
 
-              AppVerifyCode(),
+              AppOTP(),
               SizedBox(height: 58.h),
              AppResendOTP(),
 

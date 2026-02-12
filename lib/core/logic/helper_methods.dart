@@ -22,16 +22,16 @@ void goTo(Widget page, {bool canPop = false, int? delayInSeconds}) {
   }
 }
 
-void showMsg (String? msg,{bool isError=false}){
-  if(msg!=null && msg.isNotEmpty){
+void showMsg(String? msg, {bool isError = false}) {
+  if (msg != null && msg.isNotEmpty) {
     ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(
       SnackBar(
         content: Text(msg),
         duration: Duration(seconds: 3),
-        backgroundColor: isError?Colors.red:Colors.green,
+        backgroundColor: isError ? Colors.red : Colors.green,
       ),
     );
   }
-
-
 }
+
+

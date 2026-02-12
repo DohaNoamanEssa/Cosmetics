@@ -24,23 +24,45 @@ class CacheHelper {
     return _prefs.getString("email") ?? "";
   }
 
+  static String get image {
+    var image = _prefs.getString("profilePhotoUrl");
+
+    if (image == null || image.isEmpty) {
+      image =
+          "https://astrologyonline.net/img/dreams/994/7-symbolic-interpretations-dreams-about-hair_10.jpg";
+    }
+    return image;
+  }
+
   static bool get isAuth {
     return token.isNotEmpty;
   }
 
   static String get token {
-    return _prefs.getString("token") ?? "";
+    return _prefs.getString("token") ?? "HI Visitor!";
   }
 
-  static Future<void> saveUserData(UserData model) async {
-    _prefs.setString("token", model.token);
-    _prefs.setInt("id", model.user.id);
-    _prefs.setString("username", model.user.username);
-    _prefs.setString("countryCode", model.user.countryCode);
-    _prefs.setString("phoneNumber", model.user.phoneNumber);
-    _prefs.setString("email", model.user.email);
-    _prefs.setString("role", model.user.role);
-    _prefs.setString("profilePhotoUrl", model.user.profilePhotoUrl);
+  static String get name {
+    return _prefs.getString("username") ?? "";
+  }
+
+  static Future<void> saveUserData({UserData? data, UserModel? model}) async {
+    if (data == null && model == null) return;
+
+    if (data != null) {
+      _prefs.setString("token", data.token);
+      model = data.user;
+    }
+
+    if (model != null) {
+      _prefs.setInt("id", model.id);
+      _prefs.setString("username", model.username);
+      _prefs.setString("countryCode", model.countryCode);
+      _prefs.setString("phoneNumber", model.phoneNumber);
+      _prefs.setString("email", model.email);
+      _prefs.setString("role", model.role);
+      _prefs.setString("profilePhotoUrl", model.profilePhotoUrl);
+    }
   }
 
   static Future<void> logout() async {

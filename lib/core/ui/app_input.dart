@@ -47,7 +47,6 @@ class _AppInputState extends State<AppInput> {
         children: [
           if (widget.withCountryCode == true)
             AppCountryCode(onCountryCodeChanged: widget.onCountryCodeChanged),
-
           Expanded(
             child: TextFormField(
               controller: widget.controller,

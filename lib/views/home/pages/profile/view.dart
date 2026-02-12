@@ -10,8 +10,28 @@ part 'components/header.dart';
 
 part 'components/item.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    final resp = await DioHelper.getData("api/Auth/profile");
+    if (resp!.isSuccess) {
+      final model = UserModel.fromJson(resp.data);
+      await CacheHelper.saveUserData(model: model);
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +43,9 @@ class ProfilePage extends StatelessWidget {
             children: [
               _Header(),
               Padding(
-                padding: EdgeInsets.all(13.0.r).copyWith(top:40.h,bottom: 34.h),
+                padding: EdgeInsets.all(
+                  13.0.r,
+                ).copyWith(top: 40.h, bottom: 34.h),
                 child: Column(
                   children: [
                     _Item(icon: "edit_info.svg", title: "Edit Info"),

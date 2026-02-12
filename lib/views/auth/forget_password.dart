@@ -1,4 +1,6 @@
+import 'package:cosmetics/core/logic/dio_helper.dart';
 import 'package:cosmetics/core/logic/helper_methods.dart';
+import 'package:cosmetics/core/logic/input_validator.dart';
 import 'package:cosmetics/core/ui/app_back.dart';
 import 'package:cosmetics/core/ui/app_button.dart';
 import 'package:cosmetics/core/ui/app_image.dart';
@@ -15,65 +17,90 @@ class ForgetPasswordView extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPasswordView> {
+  final phoneController = TextEditingController();
+  String? selectedCountryCode;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(13.0.r).copyWith(top: 40.h),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(13.0.r).copyWith(top: 40.h),
 
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              AppBack(),
-              Padding(
-                padding: EdgeInsets.only(top: 40.0.h),
-                child: AppImage(
-                  image: "logo.png",
-                  height: 80.h,
-                  width: 80.w,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AppBack(),
+                Padding(
+                  padding: EdgeInsets.only(top: 40.0.h),
+                  child: AppImage(image: "logo.png", height: 80.h, width: 80.w),
                 ),
-              ),
-              SizedBox(height: 20.h),
-              Text(
-                "Forget Password",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.sp,
-                  color: Color(0xFF434c6D),
+                SizedBox(height: 20.h),
+                Text(
+                  "Forget Password",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.sp,
+                    color: Color(0xFF434c6D),
+                  ),
                 ),
-              ),
-              SizedBox(height: 40.h),
+                SizedBox(height: 40.h),
 
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: TextStyle(fontSize: 16, color: Color(0xff8E8EA9)),
-                  children: [
-                    TextSpan(text: 'Please enter your phone number below\n'),
-                    TextSpan(text: 'to recovery your password.'),
-                  ],
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: TextStyle(fontSize: 16, color: Color(0xff8E8EA9)),
+                    children: [
+                      TextSpan(text: 'Please enter your phone number below\n'),
+                      TextSpan(text: 'to recovery your password.'),
+                    ],
+                  ),
                 ),
-              ),
 
-              SizedBox(height: 45.h),
-              AppInput(
-                labelText: "Phone Number",
-                withCountryCode: true,
-                keyboardType: TextInputType.phone,
+                SizedBox(height: 45.h),
+                AppInput(
+                  labelText: "Phone Number",
+                  controller: phoneController,
+                  validator: InputValidator.phoneValidator,
 
-              ),
+                  withCountryCode: true,
+                  onCountryCodeChanged: (value) {
+                    selectedCountryCode = value;
+                  },
+                  keyboardType: TextInputType.phone,
+                ),
 
-              SizedBox(height: 56.h),
+                SizedBox(height: 56.h),
 
-              AppButton(
-                buttonTitle: "Next",
-                onPressed: () {
-                  goTo(VerifyCodePage(isForgetPassword: true,),canPop: true);
-                },
-              ),
-            ],
+                AppButton(
+                  buttonTitle: "Next",
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      final resp = await DioHelper.sendData(
+                        path: "api/Auth/forgot-password",
+                        data: {
+                          "countryCode": selectedCountryCode,
+                          "phoneNumber": phoneController.text,
+                        },
+                      );
+                      if (resp!.isSuccess) {
+                        goTo(
+                          VerifyCodeView(isForgetPassword: true),
+                          canPop: true,
+                        );
+                      } else {
+                        showMsg(resp.msg, isError: true);
+                      }
+                    }
+
+                    // goTo(VerifyCodePage(isForgetPassword: true), canPop: true);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:cosmetics/core/logic/cache_helper.dart';
 import 'package:cosmetics/core/logic/helper_methods.dart';
+import 'package:cosmetics/views/auth/login.dart';
 import 'package:cosmetics/views/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -83,7 +84,7 @@ class CosmaticsApp extends StatelessWidget {
             scaffoldBackgroundColor: const Color(0xffD9D9D9),
           ),
 
-          home: SplashView(),
+          home: LoginView(),
         );
       },
     );
