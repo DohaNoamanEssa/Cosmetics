@@ -25,8 +25,9 @@ This app provides a smooth browsing experience for users to explore beauty produ
 
 
  📦 Download APK  
-👉 [https://drive.google.com/file/d/10sIB3_YjF7TtPaT8Pv_jqoCnqd80OkdL/view?usp=drive_link**]([Cosmetics.apk])  
+👉 [Download Cosmetics.apk](https://drive.google.com/file/d/10sIB3_YjF7TtPaT8Pv_jqoCnqd80OkdL/view?usp=drive_link)
 
+## 📝 App Features
 
  💄 Cosmetics App
 **Version:** 1.0.0+1
@@ -35,6 +36,7 @@ This app provides a smooth browsing experience for users to explore beauty produ
 **Doha Noaman Essa**  
 📧 [Doha Noaman](mailto:doha.noaman.essa@gmail.com)  
 💬 [GitHub](https://github.com/DohaNoamanEssa)
+
 
 
 
