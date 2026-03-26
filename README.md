@@ -21,7 +21,7 @@ This app provides a smooth browsing experience for users to explore beauty produ
 
 
  🎥 Demo Video
-[![Watch the video](https://youtube.com/shorts/yFoZbpfGlDc?si=Z4JvPMUF9KeruWeR)  
+[![Watch the video](https://youtube.com/shorts/yFoZbpfGlDc?si=3CnEy-2GAIrfkr_N)  
 
 
  📦 Download APK  
